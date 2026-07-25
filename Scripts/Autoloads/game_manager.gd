@@ -1,16 +1,21 @@
 extends Node
 ## Global game manager autoload.
-## Tracks jump count, level state, and handles level transitions.
+## Tracks jump count, level state, carried over jumps, and handles level transitions.
 
 # === Signals ===
 signal jump_used(remaining: int)
+signal level_started(remaining: int)
 signal level_completed(level_num: int)
 signal game_over
 
+# === Constants ===
+const MAX_JUMP_CAP: int = 10
+
 # === State ===
 var current_level: int = 1
-var max_jumps: int = 5
-var jumps_remaining: int = 5
+var max_jumps: int = 3
+var jumps_remaining: int = 3
+var carried_over_jumps: int = 0
 var is_level_complete: bool = false
 var is_game_over: bool = false
 
@@ -20,16 +25,27 @@ func _ready() -> void:
 
 
 ## Call this at the start of each level to set the jump budget.
-func setup_level(level_num: int, jumps: int) -> void:
+func setup_level(level_num: int, base_jumps: int) -> void:
 	current_level = level_num
-	max_jumps = jumps
-	jumps_remaining = jumps
+
+	# Reset carried over jumps when starting fresh at Level 1
+	if level_num == 1:
+		carried_over_jumps = 0
+
+	# Add carried over jumps from previous level, capped strictly at MAX_JUMP_CAP (10)
+	jumps_remaining = min(base_jumps + carried_over_jumps, MAX_JUMP_CAP)
+	max_jumps = jumps_remaining
 	is_level_complete = false
 	is_game_over = false
+	level_started.emit(jumps_remaining)
 
 
-## Called by the ball when the player presses jump.
-## Returns true if the jump is allowed.
+## Returns true if player is allowed to jump.
+func can_jump() -> bool:
+	return jumps_remaining > 0 and not is_level_complete and not is_game_over
+
+
+## Deducts 1 jump when the ball reaches a new platform.
 func use_jump() -> bool:
 	if is_level_complete or is_game_over:
 		return false
@@ -39,7 +55,6 @@ func use_jump() -> bool:
 	jumps_remaining -= 1
 	jump_used.emit(jumps_remaining)
 
-	# Check if out of jumps (game over is deferred — checked when ball lands)
 	return true
 
 
@@ -48,6 +63,9 @@ func complete_level() -> void:
 	if is_level_complete:
 		return
 	is_level_complete = true
+
+	# Save remaining jumps to carry over to the next level (capped at MAX_JUMP_CAP)
+	carried_over_jumps = min(jumps_remaining, MAX_JUMP_CAP)
 	level_completed.emit(current_level)
 
 
@@ -75,6 +93,7 @@ func _load_level(level_num: int) -> void:
 	if ResourceLoader.exists(path):
 		get_tree().change_scene_to_file(path)
 	else:
-		# No more levels — loop back to level 1 (or show a "you win" screen later)
+		# Reset game to level 1 and clear carried over jumps
 		current_level = 1
+		carried_over_jumps = 0
 		get_tree().change_scene_to_file("res://Scenes/Levels/level_1.tscn")

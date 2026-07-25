@@ -12,9 +12,9 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 
-	# Handle jump with jump counter
+	# Handle jump (can jump as long as player has jumps remaining)
 	if Input.is_action_just_pressed("jump") and is_on_floor():
-		if GameManager.use_jump():
+		if GameManager.can_jump():
 			velocity.y = JUMP_VELOCITY
 
 	# Input movement
@@ -34,9 +34,19 @@ func _detect_platform() -> void:
 	if is_on_floor():
 		var landed_on = _get_floor_platform()
 		if landed_on and landed_on != current_platform:
-			# Ball landed on a NEW platform
-			previous_platform = current_platform
+			# If this is not the initial spawn landing, deduct a jump for reaching a new platform
+			if current_platform != null:
+				GameManager.use_jump()
+
+				# Pop previous platform
+				previous_platform = current_platform
+				if previous_platform and previous_platform.has_method("pop"):
+					previous_platform.pop()
+					print("POPPED: ", previous_platform.name)
+
+			# Set new current platform
 			current_platform = landed_on
+			print("NOW ON: ", current_platform.name)
 
 			# Check if landed on Goal platform
 			if current_platform.is_in_group("goal"):
@@ -44,13 +54,6 @@ func _detect_platform() -> void:
 					current_platform.celebrate()
 				GameManager.complete_level()
 				return
-
-			# Pop previous platform if it exists
-			if previous_platform and previous_platform.has_method("pop"):
-				previous_platform.pop()
-				print("POPPED: ", previous_platform.name)
-
-			print("NOW ON: ", current_platform.name)
 
 			# If out of jumps and landed on a normal platform -> Game Over
 			if GameManager.jumps_remaining <= 0 and not GameManager.is_level_complete:

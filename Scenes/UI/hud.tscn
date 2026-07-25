@@ -1,11 +1,17 @@
-[gd_scene load_steps=2 format=3 uid="uid://dhudcanvas00001"]
+[gd_scene format=3 uid="uid://j2b0g6yk3biu"]
 
-[ext_resource type="Script" path="res://Scripts/UI/hud.gd" id="1_hud"]
+[ext_resource type="Script" uid="uid://bqleh100gjscu" path="res://Scripts/UI/hud.gd" id="1_hud"]
+[ext_resource type="Texture2D" uid="uid://blgd7l0tdmxxu" path="res://Assets/UI/arrow_left.svg" id="2_left"]
+[ext_resource type="Texture2D" uid="uid://d151p7xdu5tvf" path="res://Assets/UI/arrow_left_pressed.svg" id="3_left_p"]
+[ext_resource type="Texture2D" uid="uid://lylumnpo0h6b" path="res://Assets/UI/arrow_right.svg" id="4_right"]
+[ext_resource type="Texture2D" uid="uid://cb6tmi16bjwl1" path="res://Assets/UI/arrow_right_pressed.svg" id="5_right_p"]
+[ext_resource type="Texture2D" uid="uid://dqhcf56u5cpmx" path="res://Assets/UI/arrow_up.svg" id="6_up"]
+[ext_resource type="Texture2D" uid="uid://dlr3qvsew3dgf" path="res://Assets/UI/arrow_up_pressed.svg" id="7_up_p"]
 
-[node name="HUD" type="CanvasLayer"]
+[node name="HUD" type="CanvasLayer" unique_id=1701951448]
 script = ExtResource("1_hud")
 
-[node name="GameplayUI" type="Control" parent="."]
+[node name="GameplayUI" type="Control" parent="." unique_id=1575498541]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -14,7 +20,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="JumpLabel" type="Label" parent="GameplayUI"]
+[node name="JumpLabel" type="Label" parent="GameplayUI" unique_id=1916364198]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -25,11 +31,11 @@ offset_right = 100.0
 offset_bottom = 70.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 28
-text = "Jumps: 5"
+text = "Jumps: 3"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="LevelLabel" type="Label" parent="GameplayUI"]
+[node name="LevelLabel" type="Label" parent="GameplayUI" unique_id=873741121]
 layout_mode = 1
 offset_left = 20.0
 offset_top = 30.0
@@ -39,7 +45,62 @@ theme_override_font_sizes/font_size = 20
 text = "Level 1"
 vertical_alignment = 1
 
-[node name="Overlay" type="ColorRect" parent="."]
+[node name="ButtonPanel" type="Control" parent="GameplayUI" unique_id=1073981406]
+layout_mode = 1
+anchor_top = 0.72
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+
+[node name="LeftRightContainer" type="Control" parent="GameplayUI/ButtonPanel" unique_id=872275221]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 20.0
+offset_top = -48.0
+offset_right = 230.0
+offset_bottom = 48.0
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="BtnLeft" type="TouchScreenButton" parent="GameplayUI/ButtonPanel/LeftRightContainer" unique_id=1817030309]
+texture_normal = ExtResource("2_left")
+texture_pressed = ExtResource("3_left_p")
+passby_press = true
+action = "left"
+
+[node name="BtnRight" type="TouchScreenButton" parent="GameplayUI/ButtonPanel/LeftRightContainer" unique_id=1555040262]
+position = Vector2(110, 0)
+texture_normal = ExtResource("4_right")
+texture_pressed = ExtResource("5_right_p")
+passby_press = true
+action = "right"
+
+[node name="JumpContainer" type="Control" parent="GameplayUI/ButtonPanel" unique_id=1280540211]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -120.0
+offset_top = -48.0
+offset_right = -24.0
+offset_bottom = 48.0
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="BtnJump" type="TouchScreenButton" parent="GameplayUI/ButtonPanel/JumpContainer" unique_id=81703607]
+position = Vector2(3, -3.4400024)
+texture_normal = ExtResource("6_up")
+texture_pressed = ExtResource("7_up_p")
+action = "jump"
+
+[node name="Overlay" type="ColorRect" parent="." unique_id=1484411422]
 visible = false
 anchors_preset = 15
 anchor_right = 1.0
@@ -48,7 +109,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.7)
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Overlay"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Overlay" unique_id=1094667110]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -64,20 +125,20 @@ grow_vertical = 2
 theme_override_constants/separation = 20
 alignment = 1
 
-[node name="TitleLabel" type="Label" parent="Overlay/VBoxContainer"]
+[node name="TitleLabel" type="Label" parent="Overlay/VBoxContainer" unique_id=1086150585]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Level Complete!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="NextLevelBtn" type="Button" parent="Overlay/VBoxContainer"]
+[node name="NextLevelBtn" type="Button" parent="Overlay/VBoxContainer" unique_id=588678608]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 theme_override_font_sizes/font_size = 22
 text = "Next Level"
 
-[node name="RetryBtn" type="Button" parent="Overlay/VBoxContainer"]
+[node name="RetryBtn" type="Button" parent="Overlay/VBoxContainer" unique_id=844979107]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 theme_override_font_sizes/font_size = 22

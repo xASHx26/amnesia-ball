@@ -10,6 +10,7 @@ const FIREWORKS_SCENE: PackedScene = preload("res://Scenes/Effects/fireworks.tsc
 @onready var overlay_title: Label = $Overlay/VBoxContainer/TitleLabel
 @onready var next_level_btn: Button = $Overlay/VBoxContainer/NextLevelBtn
 @onready var retry_btn: Button = $Overlay/VBoxContainer/RetryBtn
+@onready var touch_controls: Control = $GameplayUI/ButtonPanel
 
 
 func _ready() -> void:
@@ -18,6 +19,7 @@ func _ready() -> void:
 
 	# Connect to GameManager signals
 	GameManager.jump_used.connect(_on_jump_used)
+	GameManager.level_started.connect(_on_level_started)
 	GameManager.level_completed.connect(_on_level_completed)
 	GameManager.game_over.connect(_on_game_over)
 
@@ -31,7 +33,10 @@ func _ready() -> void:
 
 
 func _update_jump_display(remaining: int) -> void:
-	jump_label.text = "Jumps: %d" % remaining
+	if remaining >= GameManager.MAX_JUMP_CAP:
+		jump_label.text = "Jumps: %d (MAX)" % remaining
+	else:
+		jump_label.text = "Jumps: %d" % remaining
 
 	# Flash red when low on jumps
 	if remaining <= 1 and remaining > 0:
@@ -47,6 +52,11 @@ func _update_jump_display(remaining: int) -> void:
 
 func _on_jump_used(remaining: int) -> void:
 	_update_jump_display(remaining)
+
+
+func _on_level_started(remaining: int) -> void:
+	_update_jump_display(remaining)
+	level_label.text = "Level %d" % GameManager.current_level
 
 
 func _on_level_completed(level_num: int) -> void:
@@ -68,6 +78,7 @@ func _show_overlay(title_text: String, show_next: bool, show_retry: bool) -> voi
 	overlay_title.text = title_text
 	next_level_btn.visible = show_next
 	retry_btn.visible = show_retry
+	touch_controls.visible = false
 
 	# Fade in the overlay
 	overlay.visible = true

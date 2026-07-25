@@ -1,32 +1,32 @@
-[gd_scene load_steps=6 format=3 uid="uid://dlevel2scene002"]
+[gd_scene format=3 uid="uid://bahn4mqqo6506"]
 
-[ext_resource type="Script" path="res://Scripts/Levels/level_base.gd" id="1_lvl"]
+[ext_resource type="Script" uid="uid://cpiuf8dykr8dv" path="res://Scripts/Levels/level_base.gd" id="1_lvl"]
 [ext_resource type="PackedScene" uid="uid://13v60t2oqlqn" path="res://Scenes/Ball Scene.tscn" id="2_ball"]
 [ext_resource type="PackedScene" uid="uid://d3nlmtrw0w57f" path="res://Scenes/platforms.tscn" id="3_plat"]
-[ext_resource type="PackedScene" uid="uid://bflagplatform01" path="res://Scenes/flag_platform.tscn" id="4_flag"]
-[ext_resource type="PackedScene" uid="uid://dhudcanvas00001" path="res://Scenes/UI/hud.tscn" id="5_hud"]
+[ext_resource type="PackedScene" uid="uid://dupg2spit0ok7" path="res://Scenes/flag_platform.tscn" id="4_flag"]
+[ext_resource type="PackedScene" uid="uid://j2b0g6yk3biu" path="res://Scenes/UI/hud.tscn" id="5_hud"]
 
-[node name="Level2" type="Node2D"]
+[node name="Level2" type="Node2D" unique_id=248444192]
 script = ExtResource("1_lvl")
 level_number = 2
-max_jumps = 4
+max_jumps = 3
 
-[node name="HUD" parent="." instance=ExtResource("5_hud")]
+[node name="HUD" parent="." unique_id=2119999256 instance=ExtResource("5_hud")]
 
-[node name="StartPlatform" parent="." instance=ExtResource("3_plat")]
+[node name="StartPlatform" parent="." unique_id=389709709 instance=ExtResource("3_plat")]
 position = Vector2(340, 780)
 
-[node name="Platform1" parent="." instance=ExtResource("3_plat")]
+[node name="Platform1" parent="." unique_id=272053725 instance=ExtResource("3_plat")]
 position = Vector2(140, 670)
 
-[node name="Platform2" parent="." instance=ExtResource("3_plat")]
+[node name="Platform2" parent="." unique_id=381097476 instance=ExtResource("3_plat")]
 position = Vector2(320, 560)
 
-[node name="Platform3" parent="." instance=ExtResource("3_plat")]
+[node name="Platform3" parent="." unique_id=1346524781 instance=ExtResource("3_plat")]
 position = Vector2(140, 450)
 
-[node name="GoalPlatform" parent="." instance=ExtResource("4_flag")]
+[node name="GoalPlatform" parent="." unique_id=186348973 instance=ExtResource("4_flag")]
 position = Vector2(300, 330)
 
-[node name="Ball" parent="." instance=ExtResource("2_ball")]
+[node name="Ball" parent="." unique_id=2042481955 instance=ExtResource("2_ball")]
 position = Vector2(340, 720)
