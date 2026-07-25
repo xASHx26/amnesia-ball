@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://bahn3mqqo6505"]
+
+[ext_resource type="Script" uid="uid://cpiuf8dykr8dv" path="res://Scripts/Levels/level_base.gd" id="1_lvl"]
+[ext_resource type="PackedScene" uid="uid://13v60t2oqlqn" path="res://Scenes/Ball Scene.tscn" id="2_ball"]
+[ext_resource type="PackedScene" uid="uid://d3nlmtrw0w57f" path="res://Scenes/platforms.tscn" id="3_plat"]
+[ext_resource type="PackedScene" uid="uid://dupg2spit0ok7" path="res://Scenes/flag_platform.tscn" id="4_flag"]
+[ext_resource type="PackedScene" uid="uid://j2b0g6yk3biu" path="res://Scenes/UI/hud.tscn" id="5_hud"]
+
+[node name="Level1" type="Node2D" unique_id=28893394]
+position = Vector2(-2, 1)
+script = ExtResource("1_lvl")
+max_jumps = 5
+
+[node name="HUD" parent="." unique_id=1381371828 instance=ExtResource("5_hud")]
+
+[node name="StartPlatform" parent="." unique_id=303499189 instance=ExtResource("3_plat")]
+position = Vector2(140, 750)
+
+[node name="Platform1" parent="." unique_id=546659521 instance=ExtResource("3_plat")]
+position = Vector2(235, 708.00006)
+
+[node name="Platform2" parent="." unique_id=1125931712 instance=ExtResource("3_plat")]
+position = Vector2(178, 622.00006)
+
+[node name="Platform3" parent="." unique_id=886558560 instance=ExtResource("3_plat")]
+position = Vector2(251.00002, 564.00006)
+
+[node name="Platform4" parent="." unique_id=1007592930 instance=ExtResource("3_plat")]
+position = Vector2(103, 576.00006)
+
+[node name="GoalPlatform" parent="." unique_id=1500883212 instance=ExtResource("4_flag")]
+position = Vector2(306, 534)
+scale = Vector2(0.45518723, 0.44715485)
+
+[node name="Ball" parent="." unique_id=480724510 instance=ExtResource("2_ball")]
+position = Vector2(140, 690)

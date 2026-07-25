@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://dupg2spit0ok7"]
+
+[ext_resource type="Script" uid="uid://cx1wbb5reae8p" path="res://Scripts/Platform/flag_platform.gd" id="1_flag"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_flag"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_pole"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_flag"]
+size = Vector2(222.15663, 26.185966)
+
+[node name="FlagPlatform" type="Node2D" unique_id=1049727280]
+scale = Vector2(0.45518723, 0.45518723)
+script = ExtResource("1_flag")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="." unique_id=2105654146]
+modulate = Color(0.2, 0.85, 0.35, 1)
+scale = Vector2(-222.15663, 26.185966)
+mesh = SubResource("BoxMesh_flag")
+
+[node name="FlagPole" type="MeshInstance2D" parent="." unique_id=907795097]
+modulate = Color(1, 0.85, 0.1, 1)
+position = Vector2(0, -40)
+scale = Vector2(8, 50)
+mesh = SubResource("BoxMesh_pole")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=2077962954]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=791839327]
+shape = SubResource("RectangleShape2D_flag")

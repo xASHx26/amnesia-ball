@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://d3nlmtrw0w57f"]
+
+[ext_resource type="Script" uid="uid://dy32tapicoo74" path="res://Scripts/Platform/platform.gd" id="1_platform"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_h06de"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_platform"]
+size = Vector2(222.15663, 26.185966)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_dust"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(111, 13, 1)
+direction = Vector3(1, -0.5, 0)
+spread = 35.0
+initial_velocity_min = 60.0
+initial_velocity_max = 140.0
+gravity = Vector3(0, 80, 0)
+scale_min = 1.5
+scale_max = 4.0
+color = Color(0.85, 0.8, 0.7, 0.8)
+
+[node name="Platforms" type="Node2D" unique_id=886558560]
+scale = Vector2(0.27104467, -0.6037105)
+script = ExtResource("1_platform")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="." unique_id=1535352101]
+scale = Vector2(-222.15663, 26.185966)
+mesh = SubResource("BoxMesh_h06de")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=147142274]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=13890288]
+shape = SubResource("RectangleShape2D_platform")
+
+[node name="DustParticles" type="GPUParticles2D" parent="." unique_id=861983216]
+emitting = false
+amount = 24
+lifetime = 0.7
+one_shot = true
+explosiveness = 0.85
+process_material = SubResource("ParticleProcessMaterial_dust")

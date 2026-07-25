@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://dpcvjj0uepvag"]
+
+[ext_resource type="PackedScene" uid="uid://13v60t2oqlqn" path="res://Scenes/Ball Scene.tscn" id="1_bo1nx"]
+[ext_resource type="PackedScene" uid="uid://d3nlmtrw0w57f" path="res://Scenes/platforms.tscn" id="1_jjgbg"]
+
+[node name="Level1" type="Node2D" unique_id=945030535]
+
+[node name="Ball Scene" parent="." unique_id=999337584 instance=ExtResource("1_bo1nx")]
+position = Vector2(176, 704)
+
+[node name="Platforms" parent="." unique_id=886558560 instance=ExtResource("1_jjgbg")]
+position = Vector2(238, 759)
+
+[node name="Platforms2" parent="." unique_id=2100944196 instance=ExtResource("1_jjgbg")]
+position = Vector2(336, 692)

@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://13v60t2oqlqn"]
+
+[ext_resource type="Script" uid="uid://c3wc8mqrquwvr" path="res://Scripts/Ball_Charecter/Ball_movements.gd" id="1_l8gc0"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_h06de"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_h06de"]
+radius = 31.0
+
+[node name="Ball" type="CharacterBody2D" unique_id=839334641]
+scale = Vector2(0.30503523, 0.30503523)
+script = ExtResource("1_l8gc0")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="." unique_id=17642126]
+scale = Vector2(60.022285, 60.022285)
+mesh = SubResource("SphereMesh_h06de")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=334494013]
+shape = SubResource("CircleShape2D_h06de")

@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://dlevel2scene002"]
+
+[ext_resource type="Script" path="res://Scripts/Levels/level_base.gd" id="1_lvl"]
+[ext_resource type="PackedScene" uid="uid://13v60t2oqlqn" path="res://Scenes/Ball Scene.tscn" id="2_ball"]
+[ext_resource type="PackedScene" uid="uid://d3nlmtrw0w57f" path="res://Scenes/platforms.tscn" id="3_plat"]
+[ext_resource type="PackedScene" uid="uid://bflagplatform01" path="res://Scenes/flag_platform.tscn" id="4_flag"]
+[ext_resource type="PackedScene" uid="uid://dhudcanvas00001" path="res://Scenes/UI/hud.tscn" id="5_hud"]
+
+[node name="Level2" type="Node2D"]
+script = ExtResource("1_lvl")
+level_number = 2
+max_jumps = 4
+
+[node name="HUD" parent="." instance=ExtResource("5_hud")]
+
+[node name="StartPlatform" parent="." instance=ExtResource("3_plat")]
+position = Vector2(340, 780)
+
+[node name="Platform1" parent="." instance=ExtResource("3_plat")]
+position = Vector2(140, 670)
+
+[node name="Platform2" parent="." instance=ExtResource("3_plat")]
+position = Vector2(320, 560)
+
+[node name="Platform3" parent="." instance=ExtResource("3_plat")]
+position = Vector2(140, 450)
+
+[node name="GoalPlatform" parent="." instance=ExtResource("4_flag")]
+position = Vector2(300, 330)
+
+[node name="Ball" parent="." instance=ExtResource("2_ball")]
+position = Vector2(340, 720)

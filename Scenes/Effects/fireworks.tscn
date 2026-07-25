@@ -1,0 +1,71 @@
+[gd_scene load_steps=5 format=3 uid="uid://bfireworks00001"]
+
+[ext_resource type="Script" path="res://Scripts/Effects/fireworks.gd" id="1_fw"]
+
+[sub_resource type="ParticleProcessMaterial" id="PPM_gold"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 5.0
+direction = Vector3(0.0, -1.0, 0.0)
+spread = 60.0
+initial_velocity_min = 200.0
+initial_velocity_max = 400.0
+gravity = Vector3(0.0, 300.0, 0.0)
+scale_min = 2.0
+scale_max = 5.0
+color = Color(1.0, 0.85, 0.1, 1.0)
+
+[sub_resource type="ParticleProcessMaterial" id="PPM_red"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 5.0
+direction = Vector3(-0.3, -1.0, 0.0)
+spread = 50.0
+initial_velocity_min = 180.0
+initial_velocity_max = 350.0
+gravity = Vector3(0.0, 280.0, 0.0)
+scale_min = 2.0
+scale_max = 4.5
+color = Color(1.0, 0.3, 0.2, 0.9)
+
+[sub_resource type="ParticleProcessMaterial" id="PPM_blue"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 5.0
+direction = Vector3(0.3, -1.0, 0.0)
+spread = 50.0
+initial_velocity_min = 180.0
+initial_velocity_max = 350.0
+gravity = Vector3(0.0, 280.0, 0.0)
+scale_min = 2.0
+scale_max = 4.5
+color = Color(0.3, 0.6, 1.0, 0.9)
+
+[node name="Fireworks" type="Node2D"]
+script = ExtResource("1_fw")
+
+[node name="GoldBurst" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 40
+process_material = SubResource("PPM_gold")
+lifetime = 1.2
+one_shot = true
+explosiveness = 0.95
+
+[node name="RedBurst" type="GPUParticles2D" parent="."]
+position = Vector2(-30, 10)
+emitting = false
+amount = 30
+process_material = SubResource("PPM_red")
+lifetime = 1.0
+one_shot = true
+explosiveness = 0.9
+
+[node name="BlueBurst" type="GPUParticles2D" parent="."]
+position = Vector2(30, 10)
+emitting = false
+amount = 30
+process_material = SubResource("PPM_blue")
+lifetime = 1.0
+one_shot = true
+explosiveness = 0.9
