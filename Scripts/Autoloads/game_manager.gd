@@ -10,6 +10,7 @@ signal game_over
 
 # === Constants ===
 const MAX_JUMP_CAP: int = 10
+const LEVELS_PER_STAGE: int = 3
 
 # === State ===
 var current_level: int = 1
@@ -24,15 +25,27 @@ func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 
 
+## Returns current stage number (e.g., Levels 1-3 -> Stage 1, Levels 4-6 -> Stage 2).
+func get_stage(level_num: int = -1) -> int:
+	var lvl := current_level if level_num == -1 else level_num
+	return ((lvl - 1) / LEVELS_PER_STAGE) + 1
+
+
+## Returns 1-based level index within the current stage (1, 2, or 3).
+func get_level_in_stage(level_num: int = -1) -> int:
+	var lvl := current_level if level_num == -1 else level_num
+	return ((lvl - 1) % LEVELS_PER_STAGE) + 1
+
+
 ## Call this at the start of each level to set the jump budget.
 func setup_level(level_num: int, base_jumps: int) -> void:
 	current_level = level_num
 
-	# Reset carried over jumps when starting fresh at Level 1
-	if level_num == 1:
+	# Reset carried over jumps when starting a new stage (e.g., Level 1, Level 4, Level 7)
+	if get_level_in_stage(level_num) == 1:
 		carried_over_jumps = 0
 
-	# Add carried over jumps from previous level, capped strictly at MAX_JUMP_CAP (10)
+	# Add carried over jumps from previous level in the same stage, capped strictly at MAX_JUMP_CAP (10)
 	jumps_remaining = min(base_jumps + carried_over_jumps, MAX_JUMP_CAP)
 	max_jumps = jumps_remaining
 	is_level_complete = false

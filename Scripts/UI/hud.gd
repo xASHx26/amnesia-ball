@@ -29,7 +29,13 @@ func _ready() -> void:
 
 	# Initial display
 	_update_jump_display(GameManager.jumps_remaining)
-	level_label.text = "Level %d" % GameManager.current_level
+	_update_level_label()
+
+
+func _update_level_label() -> void:
+	var stage := GameManager.get_stage()
+	var lvl_in_stage := GameManager.get_level_in_stage()
+	level_label.text = "Stage %d - Level %d" % [stage, lvl_in_stage]
 
 
 func _update_jump_display(remaining: int) -> void:
@@ -56,7 +62,7 @@ func _on_jump_used(remaining: int) -> void:
 
 func _on_level_started(remaining: int) -> void:
 	_update_jump_display(remaining)
-	level_label.text = "Level %d" % GameManager.current_level
+	_update_level_label()
 
 
 func _on_level_completed(level_num: int) -> void:
@@ -65,9 +71,12 @@ func _on_level_completed(level_num: int) -> void:
 	fw.position = Vector2(240, 400)
 	add_child(fw)
 
+	var stage := GameManager.get_stage(level_num)
+	var lvl_in_stage := GameManager.get_level_in_stage(level_num)
+
 	# Show overlay with slight delay for fireworks to be visible
 	await get_tree().create_timer(0.5).timeout
-	_show_overlay("Level %d Complete!" % level_num, true, false)
+	_show_overlay("Stage %d - Level %d Complete!" % [stage, lvl_in_stage], true, false)
 
 
 func _on_game_over() -> void:

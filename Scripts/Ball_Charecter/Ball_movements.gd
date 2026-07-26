@@ -34,7 +34,7 @@ func _detect_platform() -> void:
 	if is_on_floor():
 		var landed_on = _get_floor_platform()
 		if landed_on and landed_on != current_platform:
-			# If this is not the initial spawn landing, deduct a jump for reaching a new platform
+			# Deduct a jump when landing on a new platform (including the goal platform)
 			if current_platform != null:
 				GameManager.use_jump()
 
