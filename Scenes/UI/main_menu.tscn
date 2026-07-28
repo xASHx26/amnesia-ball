@@ -169,7 +169,6 @@ script = ExtResource("1_menu")
 bounce_style = 2
 shader_style = 1
 layout_style = 1
-button_style = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=987123654]
 libraries/ = SubResource("AnimationLibrary_menu")

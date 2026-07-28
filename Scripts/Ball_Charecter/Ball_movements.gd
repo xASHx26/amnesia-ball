@@ -2,12 +2,23 @@ extends CharacterBody2D
 
 const SPEED = 300.0
 const JUMP_VELOCITY = -600.0
+const DEATH_Y_THRESHOLD = 880.0
+
 
 var current_platform: Node = null    # platform the ball is ON right now
 var previous_platform: Node = null   # platform the ball just LEFT
+var is_dying: bool = false
 
 
 func _physics_process(delta: float) -> void:
+	if is_dying:
+		return
+
+	# Detect touching bottom death zone
+	if global_position.y >= DEATH_Y_THRESHOLD and not GameManager.is_level_complete and not GameManager.is_game_over:
+		trigger_death()
+		return
+
 	# Add gravity
 	if not is_on_floor():
 		velocity += get_gravity() * delta
@@ -28,6 +39,33 @@ func _physics_process(delta: float) -> void:
 
 	# Detect platform collision
 	_detect_platform()
+
+
+func trigger_death() -> void:
+	if is_dying or GameManager.is_level_complete or GameManager.is_game_over:
+		return
+	is_dying = true
+
+	# Disable physics collisions so the ball falls past platforms during death animation
+	collision_layer = 0
+	collision_mask = 0
+	velocity = Vector2.ZERO
+
+	# Classic arcade death jump & fall animation
+	var start_pos := position
+	var jump_apex := start_pos + Vector2(0, -130)
+	var fall_target := start_pos + Vector2(0, 450)
+
+	var tw := create_tween()
+	# Jump up phase
+	tw.tween_property(self, "position", jump_apex, 0.25) \
+		.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	# Fall down phase off screen
+	tw.tween_property(self, "position", fall_target, 0.5) \
+		.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
+
+	await tw.finished
+	GameManager.trigger_game_over()
 
 
 func _detect_platform() -> void:
@@ -55,9 +93,9 @@ func _detect_platform() -> void:
 				GameManager.complete_level()
 				return
 
-			# If out of jumps and landed on a normal platform -> Game Over
+			# If out of jumps and landed on a normal platform -> Trigger death
 			if GameManager.jumps_remaining <= 0 and not GameManager.is_level_complete:
-				GameManager.trigger_game_over()
+				trigger_death()
 
 
 func _get_floor_platform() -> Node:

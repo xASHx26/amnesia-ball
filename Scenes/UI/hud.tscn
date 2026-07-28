@@ -9,7 +9,9 @@
 [ext_resource type="Texture2D" uid="uid://dlr3qvsew3dgf" path="res://Assets/UI/arrow_up_pressed.svg" id="7_up_p"]
 
 [node name="HUD" type="CanvasLayer" unique_id=1701951448]
+process_mode = 3
 script = ExtResource("1_hud")
+ui_style = 1
 
 [node name="GameplayUI" type="Control" parent="." unique_id=1575498541]
 layout_mode = 3
@@ -20,29 +22,39 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="JumpLabel" type="Label" parent="GameplayUI" unique_id=1916364198]
+[node name="PauseBtn" type="Button" parent="GameplayUI" unique_id=778899112]
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -100.0
-offset_top = 30.0
-offset_right = 100.0
-offset_bottom = 70.0
-grow_horizontal = 2
-theme_override_font_sizes/font_size = 28
-text = "Jumps: 3"
-horizontal_alignment = 1
-vertical_alignment = 1
+offset_left = 12.0
+offset_top = 15.0
+offset_right = 52.0
+offset_bottom = 55.0
+theme_override_font_sizes/font_size = 24
+text = "⏸"
+flat = true
 
 [node name="LevelLabel" type="Label" parent="GameplayUI" unique_id=873741121]
 layout_mode = 1
-offset_left = 20.0
-offset_top = 30.0
-offset_right = 120.0
-offset_bottom = 60.0
-theme_override_font_sizes/font_size = 20
-text = "Level 1"
+offset_left = 58.0
+offset_top = 20.0
+offset_right = 160.0
+offset_bottom = 50.0
+theme_override_font_sizes/font_size = 18
+text = "S1 • L1"
+vertical_alignment = 1
+
+[node name="JumpLabel" type="Label" parent="GameplayUI" unique_id=1916364198]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -170.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = 50.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 22
+text = "Jumps: 3"
+horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="ButtonPanel" type="Control" parent="GameplayUI" unique_id=1073981406]
@@ -109,37 +121,58 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.7)
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Overlay" unique_id=1094667110]
+[node name="PauseCard" type="PanelContainer" parent="Overlay" unique_id=1094667110]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -150.0
-offset_top = -100.0
-offset_right = 150.0
-offset_bottom = 100.0
+offset_left = -170.0
+offset_top = -180.0
+offset_right = 170.0
+offset_bottom = 180.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Overlay/PauseCard" unique_id=1094667111]
+layout_mode = 2
+theme_override_constants/separation = 12
 alignment = 1
 
-[node name="TitleLabel" type="Label" parent="Overlay/VBoxContainer" unique_id=1086150585]
+[node name="TitleLabel" type="Label" parent="Overlay/PauseCard/VBoxContainer" unique_id=1086150585]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
-text = "Level Complete!"
+text = "Paused"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="NextLevelBtn" type="Button" parent="Overlay/VBoxContainer" unique_id=588678608]
-custom_minimum_size = Vector2(0, 50)
+[node name="ResumeBtn" type="Button" parent="Overlay/PauseCard/VBoxContainer" unique_id=445566778]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "Resume"
+
+[node name="NextLevelBtn" type="Button" parent="Overlay/PauseCard/VBoxContainer" unique_id=588678608]
+custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 theme_override_font_sizes/font_size = 22
 text = "Next Level"
 
-[node name="RetryBtn" type="Button" parent="Overlay/VBoxContainer" unique_id=844979107]
-custom_minimum_size = Vector2(0, 50)
+[node name="RetryBtn" type="Button" parent="Overlay/PauseCard/VBoxContainer" unique_id=844979107]
+custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 theme_override_font_sizes/font_size = 22
 text = "Retry"
+
+[node name="MainMenuBtn" type="Button" parent="Overlay/PauseCard/VBoxContainer" unique_id=314159265]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "Main Menu"
+
+[node name="QuitBtn" type="Button" parent="Overlay/PauseCard/VBoxContainer" unique_id=998877665]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "Quit"
