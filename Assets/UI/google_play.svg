@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
+  <defs>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.4"/>
+    </filter>
+  </defs>
+  <g filter="url(#shadow)">
+    <path d="M 12 8 L 36 32 L 12 56 Z" fill="#4285F4"/>
+    <path d="M 12 8 L 36 32 L 48 24 L 12 8 Z" fill="#FBBC04"/>
+    <path d="M 12 56 L 36 32 L 48 40 L 12 56 Z" fill="#EA4335"/>
+    <path d="M 36 32 L 48 24 L 54 32 L 48 40 Z" fill="#34A853"/>
+  </g>
+</svg>

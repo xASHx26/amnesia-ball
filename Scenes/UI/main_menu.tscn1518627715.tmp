@@ -1,0 +1,337 @@
+[gd_scene format=3 uid="uid://c8n3mqqo6508"]
+
+[ext_resource type="Script" uid="uid://by0q1ihkaena7" path="res://Scripts/UI/main_menu.gd" id="1_menu"]
+[ext_resource type="Shader" uid="uid://b3mnsy05xvvn3" path="res://Shaders/background_grid.gdshader" id="2_shader"]
+[ext_resource type="Texture2D" uid="uid://brtk5bd71fh0j" path="res://Assets/UI/google_play.svg" id="3_gplay"]
+
+[sub_resource type="Animation" id="Animation_classic"]
+resource_name = "classic_bounce"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BackgroundDecor/AnimBall:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(0.4, 2.2, 1),
+"update": 0,
+"values": [Vector2(380, 580), Vector2(380, 430), Vector2(380, 580)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BackgroundDecor/AnimBall:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.08, 0.5, 0.92, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(36, 18), Vector2(24, 30), Vector2(27, 27), Vector2(24, 30), Vector2(36, 18)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BackgroundDecor/AnimPlatform:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.12, 0.88, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(120, 10), Vector2(120, 16), Vector2(120, 16), Vector2(120, 10)]
+}
+
+[sub_resource type="Animation" id="Animation_double"]
+resource_name = "double_hop"
+length = 1.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BackgroundDecor/AnimBall:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 1.1, 1.6),
+"transitions": PackedFloat32Array(0.4, 2, 0.4, 2.2, 1),
+"update": 0,
+"values": [Vector2(380, 580), Vector2(380, 510), Vector2(380, 580), Vector2(380, 390), Vector2(380, 580)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BackgroundDecor/AnimBall:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.06, 0.3, 0.6, 0.66, 1.1, 1.54, 1.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(34, 20), Vector2(25, 29), Vector2(27, 27), Vector2(34, 20), Vector2(38, 16), Vector2(23, 31), Vector2(25, 29), Vector2(34, 20)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BackgroundDecor/AnimPlatform:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.6, 0.7, 1.5, 1.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(120, 12), Vector2(120, 16), Vector2(120, 10), Vector2(120, 16), Vector2(120, 16), Vector2(120, 12)]
+}
+
+[sub_resource type="Animation" id="Animation_high"]
+resource_name = "high_jump_spin"
+length = 1.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BackgroundDecor/AnimBall:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6, 1.4),
+"transitions": PackedFloat32Array(0.35, 2.5, 1),
+"update": 0,
+"values": [Vector2(380, 580), Vector2(380, 360), Vector2(380, 580)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BackgroundDecor/AnimBall:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.6, 1.3, 1.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(40, 14), Vector2(20, 34), Vector2(27, 27), Vector2(22, 32), Vector2(40, 14)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BackgroundDecor/AnimBall:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.28319]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("BackgroundDecor/AnimPlatform:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.15, 1.25, 1.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(120, 8), Vector2(120, 16), Vector2(120, 16), Vector2(120, 8)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_menu"]
+_data = {
+&"classic_bounce": SubResource("Animation_classic"),
+&"double_hop": SubResource("Animation_double"),
+&"high_jump_spin": SubResource("Animation_high")
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bg"]
+shader = ExtResource("2_shader")
+shader_parameter/color_top = Color(0.06, 0.04, 0.14, 1)
+shader_parameter/color_bottom = Color(0.12, 0.08, 0.25, 1)
+shader_parameter/grid_color = Color(0.3, 0.5, 0.9, 0.15)
+shader_parameter/glow_color = Color(0, 0.8, 1, 0.25)
+shader_parameter/grid_scale = 40.0
+shader_parameter/speed = 0.5
+
+[sub_resource type="BoxMesh" id="BoxMesh_plat"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_ball"]
+
+[node name="MainMenu" type="Control" unique_id=1948372610]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_menu")
+bounce_style = 0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=987123654]
+libraries/ = SubResource("AnimationLibrary_menu")
+
+[node name="BackgroundRect" type="ColorRect" parent="." unique_id=129384756]
+material = SubResource("ShaderMaterial_bg")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BackgroundDecor" type="Node2D" parent="." unique_id=987654321]
+
+[node name="AnimPlatform" type="MeshInstance2D" parent="BackgroundDecor" unique_id=1122334455]
+modulate = Color(0.2, 0.85, 0.95, 1)
+position = Vector2(380, 600)
+scale = Vector2(120, 16)
+mesh = SubResource("BoxMesh_plat")
+
+[node name="AnimBall" type="MeshInstance2D" parent="BackgroundDecor" unique_id=1398842063]
+position = Vector2(380, 580)
+scale = Vector2(27, 27)
+mesh = SubResource("SphereMesh_ball")
+
+[node name="GooglePlayBtn" type="TextureButton" parent="." unique_id=159283746]
+unique_name_in_owner = true
+layout_mode = 1
+offset_left = 24.0
+offset_top = 28.0
+offset_right = 72.0
+offset_bottom = 76.0
+texture_normal = ExtResource("3_gplay")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="TitleContainer" type="VBoxContainer" parent="." unique_id=102938475]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -180.0
+offset_top = 110.0
+offset_right = 180.0
+offset_bottom = 200.0
+grow_horizontal = 2
+alignment = 1
+
+[node name="TitleLabel" type="Label" parent="TitleContainer" unique_id=918273645]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0.8, 1, 0.5)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 3
+theme_override_font_sizes/font_size = 38
+text = "AMNESIA BALL"
+horizontal_alignment = 1
+
+[node name="SubTitleLabel" type="Label" parent="TitleContainer" unique_id=817263544]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7, 0.8, 1, 0.8)
+theme_override_font_sizes/font_size = 14
+text = "STAGE & JUMP PLATFORMER"
+horizontal_alignment = 1
+
+[node name="ButtonContainer" type="VBoxContainer" parent="." unique_id=716253443]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -140.0
+offset_top = -60.0
+offset_right = 100.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="StartBtn" type="Button" parent="ButtonContainer" unique_id=615243342]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 54)
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "START GAME"
+
+[node name="LevelSelectBtn" type="Button" parent="ButtonContainer" unique_id=514233241]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "SELECT LEVEL"
+
+[node name="OptionsBtn" type="Button" parent="ButtonContainer" unique_id=413223140]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "OPTIONS"
+
+[node name="CreditsBtn" type="Button" parent="ButtonContainer" unique_id=312213039]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "CREDITS"
+
+[node name="WipModal" type="ColorRect" parent="." unique_id=211203938]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.75)
+
+[node name="ModalBox" type="PanelContainer" parent="WipModal" unique_id=110193837]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -160.0
+offset_top = -100.0
+offset_right = 160.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="WipModal/ModalBox" unique_id=101092836]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="WipModal/ModalBox/MarginContainer" unique_id=90981735]
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="WipTitle" type="Label" parent="WipModal/ModalBox/MarginContainer/VBoxContainer" unique_id=80870634]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "Work In Progress"
+horizontal_alignment = 1
+
+[node name="WipMsg" type="Label" parent="WipModal/ModalBox/MarginContainer/VBoxContainer" unique_id=70760533]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85, 0.85, 0.9, 1)
+theme_override_font_sizes/font_size = 15
+text = "Feature coming soon!"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="WipCloseBtn" type="Button" parent="WipModal/ModalBox/MarginContainer/VBoxContainer" unique_id=60650432]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "OK"

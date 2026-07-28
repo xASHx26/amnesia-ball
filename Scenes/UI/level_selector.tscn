@@ -1,0 +1,114 @@
+[gd_scene format=3 uid="uid://d8m3nqqo651a"]
+
+[ext_resource type="Script" uid="uid://bvl782t42kd3v" path="res://Scripts/UI/level_selector.gd" id="1_selector"]
+[ext_resource type="Shader" uid="uid://b3mnsy05xvvn3" path="res://Shaders/background_grid.gdshader" id="2_shader"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bg"]
+shader = ExtResource("2_shader")
+shader_parameter/color_top = Color(0.06, 0.04, 0.14, 1)
+shader_parameter/color_bottom = Color(0.12, 0.08, 0.25, 1)
+shader_parameter/grid_color = Color(0.3, 0.5, 0.9, 0.15)
+shader_parameter/glow_color = Color(0, 0.8, 1, 0.25)
+shader_parameter/grid_scale = 40.0
+shader_parameter/speed = 0.5
+
+[node name="LevelSelector" type="Control" unique_id=1928374650]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_selector")
+
+[node name="BackgroundRect" type="ColorRect" parent="." unique_id=182736453]
+material = SubResource("ShaderMaterial_bg")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HeaderContainer" type="Control" parent="." unique_id=987123456]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 90.0
+grow_horizontal = 2
+
+[node name="BackBtn" type="Button" parent="HeaderContainer" unique_id=876543210]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(90, 44)
+layout_mode = 1
+offset_left = 20.0
+offset_top = 24.0
+offset_right = 110.0
+offset_bottom = 68.0
+theme_override_font_sizes/font_size = 18
+text = "< BACK"
+
+[node name="HeaderTitle" type="Label" parent="HeaderContainer" unique_id=765432109]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -150.0
+offset_top = 26.0
+offset_right = 150.0
+offset_bottom = 66.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 28
+text = "SELECT STAGE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StageScroll" type="ScrollContainer" parent="." unique_id=654321098]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -210.0
+offset_top = -320.0
+offset_right = 210.0
+offset_bottom = 380.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_scroll_mode = 0
+
+[node name="StageGrid" type="GridContainer" parent="StageScroll" unique_id=543210987]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/h_separation = 16
+theme_override_constants/v_separation = 16
+columns = 2
+
+[node name="LevelScroll" type="ScrollContainer" parent="." unique_id=432109876]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -210.0
+offset_top = -320.0
+offset_right = 210.0
+offset_bottom = 380.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_scroll_mode = 0
+
+[node name="LevelGrid" type="GridContainer" parent="LevelScroll" unique_id=321098765]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/h_separation = 16
+theme_override_constants/v_separation = 16
+columns = 2

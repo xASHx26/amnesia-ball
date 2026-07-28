@@ -9,7 +9,7 @@
 [node name="Level2" type="Node2D" unique_id=248444192]
 script = ExtResource("1_lvl")
 level_number = 2
-max_jumps = 4
+max_jumps = 5
 
 [node name="HUD" parent="." unique_id=2119999256 instance=ExtResource("5_hud")]
 
