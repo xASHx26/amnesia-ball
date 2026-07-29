@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 GameManager="*res://Scripts/Autoloads/game_manager.gd"
+UISettingsManager="*res://Scripts/Autoloads/ui_settings_manager.gd"
 
 [display]
 
