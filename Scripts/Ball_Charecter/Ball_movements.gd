@@ -8,30 +8,47 @@ const DEATH_Y_THRESHOLD = 880.0
 var current_platform: Node = null    # platform the ball is ON right now
 var previous_platform: Node = null   # platform the ball just LEFT
 var is_dying: bool = false
+var was_enhanced_jump: bool = false
+
+
+func _ready() -> void:
+	add_to_group("ball")
 
 
 func _physics_process(delta: float) -> void:
 	if is_dying:
 		return
 
-	# Detect touching bottom death zone
+	# Detect touching bottom death zone (skip if a popped enhanced platform can still catch us)
 	if global_position.y >= DEATH_Y_THRESHOLD and not GameManager.is_level_complete and not GameManager.is_game_over:
-		trigger_death()
-		return
+		if not _has_popped_enhanced_below():
+			trigger_death()
+			return
 
 	# Add gravity
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 
+	# Reset enhanced jump when grounded
+	if is_on_floor():
+		was_enhanced_jump = false
+
 	# Handle jump (can jump as long as player has jumps remaining)
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		if GameManager.can_jump():
-			velocity.y = JUMP_VELOCITY
+			var jump_force := JUMP_VELOCITY
+			if is_instance_valid(current_platform) and current_platform.get("is_enhanced") and current_platform.get("is_reappeared"):
+				was_enhanced_jump = true
+				jump_force = JUMP_VELOCITY * 1.15  # slightly higher apex to clear double horizontal distance
+			velocity.y = jump_force
 
 	# Input movement
 	var direction := Input.get_axis("left", "right")
 	if direction and not GameManager.is_level_complete and not GameManager.is_game_over:
-		velocity.x = direction * SPEED
+		var move_speed := SPEED
+		if not is_on_floor() and was_enhanced_jump:
+			move_speed = SPEED * 2.0  # 2x horizontal jump distance!
+		velocity.x = direction * move_speed
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
@@ -39,6 +56,7 @@ func _physics_process(delta: float) -> void:
 
 	# Detect platform collision
 	_detect_platform()
+
 
 
 func trigger_death() -> void:
@@ -110,3 +128,11 @@ func _get_floor_platform() -> Node:
 				if parent.is_in_group("goal") or parent.has_method("pop"):
 					return parent
 	return null
+
+
+## Returns true if any enhanced platform in the level is in popped state (waiting to reappear).
+func _has_popped_enhanced_below() -> bool:
+	for node in get_tree().get_nodes_in_group("enhanced_platform"):
+		if is_instance_valid(node) and node.get("is_popped_enhanced"):
+			return true
+	return false

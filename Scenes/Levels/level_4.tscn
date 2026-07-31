@@ -7,9 +7,10 @@
 [ext_resource type="PackedScene" uid="uid://13v60t2oqlqn" path="res://Scenes/Ball Scene.tscn" id="5_keyqw"]
 
 [node name="Level4" type="Node2D" unique_id=348444193]
+position = Vector2(0, 2)
 script = ExtResource("1_jqrsn")
 level_number = 4
-max_jumps = 4
+max_jumps = 7
 
 [node name="HUD" parent="." unique_id=2119999257 instance=ExtResource("2_t74h0")]
 
@@ -20,10 +21,11 @@ position = Vector2(140, 780)
 position = Vector2(320, 680)
 
 [node name="Platform2" parent="." unique_id=381097477 instance=ExtResource("3_i4hbv")]
-position = Vector2(140, 570)
+position = Vector2(144, 569.00006)
 
 [node name="Platform3" parent="." unique_id=1346524782 instance=ExtResource("3_i4hbv")]
-position = Vector2(320, 460)
+position = Vector2(96, 440.00003)
+is_enhanced = true
 
 [node name="Platform4" parent="." unique_id=1346524783 instance=ExtResource("3_i4hbv")]
 position = Vector2(180, 350)

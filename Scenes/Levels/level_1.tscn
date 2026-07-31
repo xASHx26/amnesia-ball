@@ -17,6 +17,7 @@ position = Vector2(140, 750)
 
 [node name="Platform1" parent="." unique_id=546659521 instance=ExtResource("3_plat")]
 position = Vector2(235, 708.00006)
+is_enhanced = true
 
 [node name="Platform2" parent="." unique_id=1125931712 instance=ExtResource("3_plat")]
 position = Vector2(178, 622.00006)
